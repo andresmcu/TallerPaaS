@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>SCAPyD Application - Andrés Manrique</title>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" href="static/stylesheets/reset.css">
+    	<link rel="stylesheet" href="static/stylesheets/style.css">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    	<script src="static/js/index.js"></script>
+  	</head>
+
+  	<body>
+  		<div class="login-page">
+			<div class="form">
+				<form class="register-form" name="registrar" action="registrar" method="POST">
+					<input type="text" name="name" placeholder="Nombre"/>
+					<input type="text" name="user" placeholder="Identificador"/>
+					<input type="password" name="password" placeholder="Contraseña"/>
+					<input type="submit" name="submit" value="Crear cuenta" />
+					<p class="message">¿Ya registrado? <a href="#">Acceder</a></p>
+				</form>
+				<form class="login-form" name="acceder" action="acceder" method="POST">
+					<input type="text" name="user" placeholder="Usuario" />
+					<input type="password" name="password" placeholder="Contraseña" />
+					<input type="submit" name="submit" value="Acceder" />
+					<p class="message">¿No registrado? <a href="#">Crear una cuenta</a></p>
+				</form>
+				{% if error %}
+					<p style="margin-top: 20px; color: black;">Error: {{ error }}</p>
+				{% endif %}
+		  	</div>
+		</div>
+  	</body>
+</html>

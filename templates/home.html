@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>SCAPyD Application - Andrés Manrique</title>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" href="static/stylesheets/reset.css">
+    	<link rel="stylesheet" href="static/stylesheets/home.css">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script type="text/javascript" src="static/js/home.js"></script>
+
+      <script type="text/javascript">
+        /*eslint-env jquery, browser */
+        function formatDate(date) {
+          var monthNames = [
+            "Enero", "Febrero", "Marzo",
+            "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre",
+            "Noviembre", "Diciembre"
+          ];
+
+          var day = date.getDate();
+          var monthIndex = date.getMonth();
+          var year = date.getFullYear();
+
+          var hora = date.getHours();
+          var minutes = date.getMinutes();
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+
+          return day + " " + monthNames[monthIndex] + " " + year + " a las " + hora + ":" + minutes;
+        }
+
+        //var last_connection = "{{ last_connection }}";
+
+        function getLastConnection(time){
+          var last_connection = time.split("$date")[1].split(":")[1].split("}")[0].trim();
+          var n = Number(last_connection);
+          var time = formatDate(new Date(n));
+          alert("La fecha de su última conexión fue: \n\n" + time);
+        }
+
+        //alert("La fecha de su última conexión fue: \n\n" + time);
+        //loadData();
+      </script>
+
+  	</head>
+
+  	<body>
+  		<div class="home">
+			{% if username %}
+				<h1 class="title">Bienvenido [ {{ username }} ]</h1>
+          <nav>
+            <p><a href="acceder">Inicio</a></p>
+            <p><a href="javascript:void(0);" id="cargarUsuarios">Consultar usuarios</a></p>
+            <p><a href="javascript:getLastConnection('{{ last_connection }}');">Mi última conexión</a></p>
+            <p><a href="salir">Salir</a></p>
+          </nav>
+		      <div class="container">
+		        <div class="form">
+		          <h2>Usuarios registrados en la aplicación</h2>
+		          <div class="listOfUsers"></div>
+		        </div>
+		      </div>
+			{% endif %}
+		</div>
+    
+      
+      
+  	</body>
+</html>
